@@ -17,10 +17,10 @@ set(LUA_LIBRARY lua-${LUA_VERSION})
 add_library(${LUA_LIBRARY} STATIC ${LUA_SOURCES})
 
 set(LUA_PUBLIC_H
-    src/zconf.h
     src/lua.h
     src/luaconf.h
     src/lualib.h
+    src/lauxlib.h 
     src/lua.hpp
 )
 
