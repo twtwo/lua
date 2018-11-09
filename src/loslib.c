@@ -140,12 +140,7 @@ static time_t l_checktime (lua_State *L, int arg) {
 
 static int os_execute (lua_State *L) {
   const char *cmd = luaL_optstring(L, 1, NULL);
-
-#if __IPHONE_OS_VERSION_MAX_ALLOWED < 110000//__IPHONE_11_0//pengbo !!!
   int stat = system(cmd);
-#else
-  int stat = 0;
-#endif
   if (cmd != NULL)
     return luaL_execresult(L, stat);
   else {
