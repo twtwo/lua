@@ -9,6 +9,7 @@ set(INSTALL_LUA_INCLUDE_DIR "${CMAKE_INSTALL_PREFIX}/include" CACHE PATH "Instal
 
 if(WIN32)
     add_definitions( -D_CRT_SECURE_NO_WARNINGS )
+    add_definitions( -DLUA_BUILD_AS_DLL )
 endif()
 
 include_directories(src)
