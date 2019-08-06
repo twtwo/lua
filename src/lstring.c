@@ -1,5 +1,5 @@
 /*
-** $Id: lstring.c,v 2.66 2018/05/30 14:25:52 roberto Exp $
+** $Id: lstring.c $
 ** String table (keeps all strings handled by Lua)
 ** See Copyright Notice in lua.h
 */
@@ -121,8 +121,8 @@ void luaS_clearcache (global_State *g) {
   int i, j;
   for (i = 0; i < STRCACHE_N; i++)
     for (j = 0; j < STRCACHE_M; j++) {
-    if (iswhite(g->strcache[i][j]))  /* will entry be collected? */
-      g->strcache[i][j] = g->memerrmsg;  /* replace it with something fixed */
+      if (iswhite(g->strcache[i][j]))  /* will entry be collected? */
+        g->strcache[i][j] = g->memerrmsg;  /* replace it with something fixed */
     }
 }
 
