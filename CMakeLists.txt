@@ -1,8 +1,6 @@
-cmake_minimum_required(VERSION 3.11.0 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.5.0 FATAL_ERROR)
 
-project(lua)
-
-set(LUA_VERSION 5.4.0)
+project(lua C)
 
 set(INSTALL_LUA_LIB_DIR "${CMAKE_INSTALL_PREFIX}/lib" CACHE PATH "Installation directory for libraries")
 set(INSTALL_LUA_INCLUDE_DIR "${CMAKE_INSTALL_PREFIX}/include" CACHE PATH "Installation directory for headers")
@@ -28,13 +26,12 @@ else()
 endif()
 
 
-
 include_directories(src)
 
 aux_source_directory(src LUA_SOURCES)
 list(REMOVE_ITEM LUA_SOURCES "src/lua.c" "src/luac.c")
 
-set(LUA_LIBRARY lua-${LUA_VERSION})
+set(LUA_LIBRARY lua)
 
 
 add_library(${LUA_LIBRARY} ${LUA_LIBRARY_TYPE} ${LUA_SOURCES})
@@ -50,3 +47,7 @@ set(LUA_PUBLIC_H
 
 install(FILES ${LUA_PUBLIC_H} DESTINATION "${INSTALL_LUA_INCLUDE_DIR}")
 install(TARGETS ${LUA_LIBRARY} DESTINATION "${INSTALL_LUA_LIB_DIR}")
+
+if (${LUA_LIBRARY_TYPE} MATCHES "SHARED" ) 
+    install(TARGETS ${LUA_LIBRARY} DESTINATION "${INSTALL_LUA_LIB_DIR}")
+endif()
